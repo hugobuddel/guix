@@ -827,6 +827,9 @@ extracting, creating, and converting between formats.")
                (substitute* "conda/common/path.py"
                  (("python_version or ''")
                   "python_version or '3'"))
+               (substitute* "conda/shell/etc/profile.d/conda.sh"
+                 (("\"$CONDA_EXE\" $_CE_M $_CE_CONDA")
+                  ("bash --norc -i \"$CONDA_EXE\" $_CE_M $_CE_CONDA")))
                (substitute* "conda/core/initialize.py"
                  (("python_exe = join")
                   (format #f "python_exe = \"~a/bin/python\" #"
